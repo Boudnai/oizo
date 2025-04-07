@@ -171,25 +171,20 @@ function getObjetsPanier($idPanier) {
     return $resultat;
 }
 
-function updatePanier($idPanier, $idSpectacle, $nbPlaces){
-    $resultat = [];
-
+function updatePanier($idPanier, $idSpectacle, $nbPlaces) {
     try {
         $cnx = connexionPDO();
         $req = $cnx->prepare("UPDATE contenir SET nbPlaces=:nbPlaces WHERE idPanier=:idPanier AND idSpectacle=:idSpectacle");
         $req->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
         $req->bindValue(':idSpectacle', $idSpectacle, PDO::PARAM_INT);
         $req->bindValue(':nbPlaces', $nbPlaces, PDO::PARAM_INT);
-        $req->execute();
-
-        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
-            $resultat[] = $ligne;
-        }
+        
+        // Exécuter la requête et retourner true si elle réussit
+        return $req->execute();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
     }
-    return $resultat;
 }
 
 function deleteObjet($idPanier, $idSpectacle){
