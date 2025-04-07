@@ -265,7 +265,7 @@ function getLesOiseauxSpectacle(){
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM Oiseau WHERE idSpectacle NOT NULL");
+        $req = $cnx->prepare("SELECT * FROM Oiseau WHERE idSpectacle IS NOT NULL");
         $req->execute();
 
         while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {

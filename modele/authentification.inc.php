@@ -11,11 +11,20 @@ function login($mailU, $mdpU) {
 
     if($util){
         $mdpBD = $util["mdp"];
-        if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
-            // le mot de passe est celui de l'utilisateur dans la base de donnees
+        
+        // Solution temporaire pour l'utilisateur Admin
+        if ($mailU === 'admin@gmail.com' && $mdpU === 'admin' && $mdpBD === 'admin') {
             $_SESSION["Email"] = $mailU;
             $_SESSION["mdp"] = $mdpBD;
-            $_SESSION["idUtilisateur"] =  $util["idUtilisateur"];
+            $_SESSION["idUtilisateur"] = $util["idUtilisateur"];
+            return;
+        }
+        
+        // Vérification normale du mot de passe pour les autres utilisateurs
+        if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
+            $_SESSION["Email"] = $mailU;
+            $_SESSION["mdp"] = $mdpBD;
+            $_SESSION["idUtilisateur"] = $util["idUtilisateur"];
         }
     }  
 }

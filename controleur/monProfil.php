@@ -18,11 +18,13 @@ if (isLoggedOn()){
     
     // Si l'utilisateur est admin, charger les données nécessaires
     if ($estAdmin) {
-        $lesOiseaux = getLesOiseaux();
         $lesSpectacles = getLesSpectacles();
         $lesOiseauxAvecSpectacle = getLesOiseauxSpectacle();
         $lesOiseauxSansSpectacle = getLesOiseauxSansSpectacle();
     }
+    
+    // Récupérer les messages de session
+    $messages = recupererMessages();
     
     // Afficher le profil
     $titre = "Mon profil - Oizo";
@@ -31,9 +33,7 @@ if (isLoggedOn()){
     include "$racine/vue/pied.html.php";
 }
 else {
-    // Rediriger vers la page de connexion ou afficher un message
-    $titre = "Mon profil - Oizo";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/pied.html.php";
+    // Rediriger vers la page de connexion
+    gererErreur("Vous devez être connecté pour accéder à cette page", "?action=connexion");
 }
 ?>
