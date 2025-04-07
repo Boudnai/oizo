@@ -13,6 +13,7 @@ $racine = dirname(__FILE__);
 include_once "$racine/modele/bd.inc.php";
 include_once "$racine/modele/authentification.inc.php";
 include_once "$racine/modele/bd.utilisateur.inc.php";
+include_once "$racine/modele/bd.oizo.inc.php"; // Ajout de cette ligne
 
 // Fonction pour gérer les erreurs et rediriger si nécessaire
 function gererErreur($message, $redirect = null) {
