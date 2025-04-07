@@ -1,44 +1,69 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
-}
+// Inclusion du fichier d'initialisation n'est plus nécessaire ici
+// car il est déjà inclus dans index.php
 
-include_once "$racine/modele/bd.inc.php";
+// Inclusion spécifique pour ce contrôleur
 include_once "$racine/modele/bd.oizo.inc.php";
 
+// Initialiser variables
+$resultat = [];
+$prixTotal = 0;
+$messages = recupererMessages();
 
-session_start();
-$idU = $_SESSION['idUtilisateur'];
+// L'utilisateur est forcément connecté (grâce à securiserControleur)
+$idU = $utilisateur['idUtilisateur'];
 
+// Récupérer le panier de l'utilisateur
 $idPanier = getIdPanierUser($idU);
 
-$resultat = getObjetsPanier($idPanier['idPanier']);
-
-
-$prixTotal = 0;
-
-if(isset($_POST['update_quantite'])){
-    $idPanier = $_POST['id_panier'];
-    $idSpectacle = $_POST['id_spectacle'];
-    $nb_places = $_POST['nb_places'];
-
-    updatePanier($idPanier, $idSpectacle, $nb_places);
-    $msg = 'Quantité mise à jour';
-    header('location:?action=panier');
+// Vérifier si idPanier existe
+if (is_array($idPanier) && isset($idPanier['idPanier'])) {
+    // Traiter les actions POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['update_quantite'])) {
+            $panierID = $_POST['id_panier'];
+            $idSpectacle = $_POST['id_spectacle'];
+            $nb_places = (int)$_POST['nb_places'];
+            
+            if ($nb_places > 0) {
+                if (updatePanier($panierID, $idSpectacle, $nb_places)) {
+                    gererSucces('Quantité mise à jour', '?action=panier');
+                } else {
+                    gererErreur('Erreur lors de la mise à jour de la quantité', '?action=panier');
+                }
+            } else {
+                gererErreur('Veuillez entrer une quantité valide', '?action=panier');
+            }
+        }
+        
+        if (isset($_POST['delete'])) {
+            $panierID = $_POST['id_panier'];
+            $idSpectacle = $_POST['id_spectacle'];
+            
+            if (deleteObjet($panierID, $idSpectacle)) {
+                gererSucces('Objet retiré du panier', '?action=panier');
+            } else {
+                gererErreur('Erreur lors de la suppression de l\'objet', '?action=panier');
+            }
+        }
+    }
+    
+    // Récupérer les objets du panier
+    $resultat = getObjetsPanier($idPanier['idPanier']);
+    
+    // Calculer le prix total
+    if (is_array($resultat)) {
+        foreach ($resultat as $item) {
+            $prixTotal += $item['prix'] * $item['nbPlaces'];
+        }
+    }
+} else {
+    $messages['erreur'] = 'Erreur: Panier non trouvé.';
 }
 
-if(isset($_POST['delete'])){
-    $idPanier = $_POST['id_panier'];
-    $idSpectacle = $_POST['id_spectacle'];
-
-    deleteObjet($idPanier, $idSpectacle);
-    $msg = 'Objet retiré du panier';
-    header('location:?action=panier');
-}
-
+// Afficher la page
 $titre = "Panier - Oizo";
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vuePanier.php";
 include "$racine/vue/pied.html.php";
-
 ?>

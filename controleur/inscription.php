@@ -12,7 +12,7 @@ if (isset($_POST["nom"]) && isset($_POST["PrenomUtilisateur"]) && isset($_POST["
 
     if ($_POST["nom"] != "" && $_POST["PrenomUtilisateur"] != "" && $_POST["Email"] != "" && $_POST["mdp"] != "") {
         $nomU = $_POST["nom"];
-        $prenomU = $_POST["prenomU"];
+        $prenomU = $_POST["PrenomUtilisateur"];
         $mailU = $_POST["Email"];
         $mdpU = $_POST["mdp"];
 

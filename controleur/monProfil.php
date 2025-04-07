@@ -10,35 +10,30 @@ if (isLoggedOn()){
     $mailU = getMailULoggedOn();
     $util = getUtilisateurByEmail($mailU);
     
+    // Récupérer l'ID de l'utilisateur correctement
+    $idUtilisateur = $util["idUtilisateur"];
+    
+    // Vérifier si l'utilisateur est admin
+    $estAdmin = estAdmin($idUtilisateur);
+    
+    // Si l'utilisateur est admin, charger les données nécessaires
+    if ($estAdmin) {
+        $lesOiseaux = getLesOiseaux();
+        $lesSpectacles = getLesSpectacles();
+        $lesOiseauxAvecSpectacle = getLesOiseauxSpectacle();
+        $lesOiseauxSansSpectacle = getLesOiseauxSansSpectacle();
+    }
+    
+    // Afficher le profil
     $titre = "Mon profil - Oizo";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueMonProfil.php";
     include "$racine/vue/pied.html.php";
 }
-else{
+else {
+    // Rediriger vers la page de connexion ou afficher un message
     $titre = "Mon profil - Oizo";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/pied.html.php";
 }
-
-if (estAdmin(getUtilisateursById(getMailULoggedOn()))){
-    $lesOiseaux = getLesOiseaux();
-    $lesSpectacles = getLesSpectacles();
-    $lesOiseauxAvecSpectacle = getLesOiseauxSpectacle();
-    $lesOiseauxSansSpectacle = getLesOiseauxSansSpectacle();
-
-    $ajouterOiseauSpectacle = ajouterOiseauSpectacle($lesOiseauxSansSpectacle, $lesSpectacles);
-    $retirerOiseauSpectacle = retirerOiseauSpectacle($lesOiseauxAvecSpectacle);
-
-    $titre = "Mon profil - Oizo";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/vueMonProfil.php";
-    include "$racine/vue/pied.html.php";
-}
-else{
-    $titre = "Mon profil - Oizo";
-    include "$racine/vue/entete.html.php";
-    include "$racine/vue/pied.html.php";
-}
-
 ?>

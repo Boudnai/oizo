@@ -156,13 +156,14 @@ function getObjetsPanier($idPanier) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT S.titre, S.prix, S.libelle, c.nbPlaces, c.idPanier, c.idSpectacle FROM Spectale S, contenir c WHERE c.idPanier = :idPanier AND S.idSpectacle = c.idSpectacle");
+        // Corriger "Spectale" en "Spectacle"
+        $req = $cnx->prepare("SELECT S.titre, S.prix, S.libelle, c.nbPlaces, c.idPanier, c.idSpectacle 
+                              FROM Spectacle S, contenir c 
+                              WHERE c.idPanier = :idPanier AND S.idSpectacle = c.idSpectacle");
         $req->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
         $req->execute();
 
-        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
-            $resultat[] = $ligne;
-        }
+        $resultat = $req->fetchAll(PDO::FETCH_ASSOC); // Utiliser fetchAll pour récupérer toutes les lignes
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
@@ -288,7 +289,7 @@ function getLesOiseauxSansSpectacle(){
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM Oiseau WHERE idSpectacle NULL");
+        $req = $cnx->prepare("SELECT * FROM Oiseau WHERE idSpectacle IS NULL");
         $req->execute();
 
         while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -343,7 +344,8 @@ function estAdmin($idUtilisateur){
     
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT nom FROM Utilisateur WHERE idUtiliateur = :idUtilisateur");
+        // Correction de la faute de frappe "idUtiliateur" -> "idUtilisateur"
+        $req = $cnx->prepare("SELECT nom FROM Utilisateur WHERE idUtilisateur = :idUtilisateur");
         $req->bindValue(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
         $req->execute();
         $admin = $req->fetch(PDO::FETCH_ASSOC);

@@ -61,7 +61,7 @@ function addUtilisateur($nom, $prenom, $mailU, $mdpU) {
         $req->bindValue(':nom', $nom, PDO::PARAM_STR);
         $req->bindValue(':prenom', $prenom, PDO::PARAM_STR);
         $req->bindValue(':mail', $mailU, PDO::PARAM_STR);
-        $req->bindValue(':mdpU', $mdpUCrypt, PDO::PARAM_STR);
+        $req->bindValue(':mdp', $mdpUCrypt, PDO::PARAM_STR);
         
         $resultat = $req->execute();
 

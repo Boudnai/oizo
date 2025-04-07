@@ -64,7 +64,7 @@ SET @idSpectacle1 = LAST_INSERT_ID() - 2;
 SET @idSpectacle2 = LAST_INSERT_ID() - 1;
 SET @idSpectacle3 = LAST_INSERT_ID();
 
-INSERT INTO Oiseau (nom, espece, taille, typeO, idSpectacle) VALUES('Aigle Royal', 'Aquila chrysaetos', 2.3, 'rapace diurne', @idSpectacle1)
+INSERT INTO Oiseau (nom, espece, taille, typeO, idSpectacle) VALUES('Aigle Royal', 'Aquila chrysaetos', 2.3, 'rapace diurne', @idSpectacle1);
 INSERT INTO Oiseau (nom, espece, taille, typeO, idSpectacle) VALUES('Faucon Pèlerin', 'Falco peregrinus', 1.2, 'rapace diurne', @idSpectacle1);
 INSERT INTO Oiseau (nom, espece, taille, typeO, idSpectacle) VALUES('Buse Variable', 'Buteo buteo', 1.1, 'rapace diurne', @idSpectacle1);
 
