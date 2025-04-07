@@ -14,7 +14,7 @@ $lesExotiques = getExotiques();
 $lesAquatiques = getAquatiques();
 $lesPassereaux = getPassereaux();
 
-$titre = "Boutique - Oizo";
+$titre = "Oiseaux - Oizo";
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vueOiseaux.php";
 include "$racine/vue/pied.html.php";

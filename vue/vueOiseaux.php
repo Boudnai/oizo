@@ -17,72 +17,109 @@
         <div class="width">
             <div class="filter-buttons">
                 <button data-filter="*" class="filter-select active-filter" type="button">Tout</button>
-                <button data-filter="exp" class="filter-select" type="button">Rapaces diurnes</button>
-                <button data-filter="ball" class="filter-select" type="button">Rapaces nocturnes</button>
-                <button data-filter="baie" class="filter-select" type="button">Exotiques</button>
-                <button data-filter="badge" class="filter-select" type="button">Aquatiques</button>
-                <button data-filter="badge" class="filter-select" type="button">Passereaux</button>
+                <button data-filter="rapaces_jours" class="filter-select" type="button">Rapaces diurnes</button>
+                <button data-filter="rapaces_nuit" class="filter-select" type="button">Rapaces nocturnes</button>
+                <button data-filter="exotiques" class="filter-select" type="button">Exotiques</button>
+                <button data-filter="aquatiques" class="filter-select" type="button">Aquatiques</button>
+                <button data-filter="passereaux" class="filter-select" type="button">Passereaux</button>
             </div>
             <div class="boutique">
                 <div class="items-container">
-
-                    <?php for ($i = 0; $i < count($lesRapacesJours); $i++) { ?>
-                        <form action="" method="post">
+                    <!-- Rapaces diurnes -->
+                    <?php foreach ($lesRapacesJours as $oiseau): ?>
                         <div data-filter="rapaces_jours" class="item">
-                            <div class="select-img"><img src="img/<?= $lesRapacesJours[$i]['imageO'] ?>" alt=""></div>
-                            <div class="nom"><?= $lesRapacesJours[$i]['nom'] ?></div>
-                            <div class="espece"><?= $lesRapacesJours[$i]['espece']; ?></div>
+                            <div class="select-img">
+                                <img src="img/<?= !empty($oiseau['imageO']) ? $oiseau['imageO'] : 'default_bird.jpg' ?>" alt="<?= htmlspecialchars($oiseau['nom']) ?>">
+                            </div>
+                            <div class="nom"><?= htmlspecialchars($oiseau['nom']) ?></div>
+                            <div class="espece"><?= htmlspecialchars($oiseau['espece']) ?></div>
                         </div>
-                        </form>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
-                    <?php for ($i = 0; $i < count($lesRapacesNuit); $i++) { ?>
-                        <form action="" method="post">
+                    <!-- Rapaces nocturnes -->
+                    <?php foreach ($lesRapacesNuit as $oiseau): ?>
                         <div data-filter="rapaces_nuit" class="item">
-                            <div class="select-img"><img src="img/<?= $lesRapacesNuit[$i]['imageO'] ?>" alt=""></div>
-                            <div class="nom"><?= $lesRapacesNuit[$i]['nom'] ?></div>
-                            <div class="espece"><?= $lesRapacesNuit[$i]['espece']; ?></div>
+                            <div class="select-img">
+                                <img src="img/<?= !empty($oiseau['imageO']) ? $oiseau['imageO'] : 'default_bird.jpg' ?>" alt="<?= htmlspecialchars($oiseau['nom']) ?>">
+                            </div>
+                            <div class="nom"><?= htmlspecialchars($oiseau['nom']) ?></div>
+                            <div class="espece"><?= htmlspecialchars($oiseau['espece']) ?></div>
                         </div>
-                        </form>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
-                    <?php for ($i = 0; $i < count($lesExotiques); $i++) { ?>
-                        <form action="" method="post">
+                    <!-- Exotiques -->
+                    <?php foreach ($lesExotiques as $oiseau): ?>
                         <div data-filter="exotiques" class="item">
-                            <div class="select-img"><img src="img/<?= $lesExotiques[$i]['imageO'] ?>" alt=""></div>
-                            <div class="nom"><?= $lesExotiques[$i]['nom'] ?></div>
-                            <div class="espece"><?= $lesExotiques[$i]['espece']; ?></div>
+                            <div class="select-img">
+                                <img src="img/<?= !empty($oiseau['imageO']) ? $oiseau['imageO'] : 'default_bird.jpg' ?>" alt="<?= htmlspecialchars($oiseau['nom']) ?>">
+                            </div>
+                            <div class="nom"><?= htmlspecialchars($oiseau['nom']) ?></div>
+                            <div class="espece"><?= htmlspecialchars($oiseau['espece']) ?></div>
                         </div>
-                        </form>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
-                    <?php for ($i = 0; $i < count($lesAquatiques); $i++) { ?>
-                        <form action="" method="post">
-                        <div data-filter="rapaces_nuit" class="item">
-                            <div class="select-img"><img src="img/<?= $lesAquatiques[$i]['imageO'] ?>" alt=""></div>
-                            <div class="nom"><?= $lesAquatiques[$i]['nom'] ?></div>
-                            <div class="espece"><?= $lesAquatiques[$i]['espece']; ?></div>
+                    <!-- Aquatiques -->
+                    <?php foreach ($lesAquatiques as $oiseau): ?>
+                        <div data-filter="aquatiques" class="item">
+                            <div class="select-img">
+                                <img src="img/<?= !empty($oiseau['imageO']) ? $oiseau['imageO'] : 'default_bird.jpg' ?>" alt="<?= htmlspecialchars($oiseau['nom']) ?>">
+                            </div>
+                            <div class="nom"><?= htmlspecialchars($oiseau['nom']) ?></div>
+                            <div class="espece"><?= htmlspecialchars($oiseau['espece']) ?></div>
                         </div>
-                        </form>
-                    <?php } ?>
+                    <?php endforeach; ?>
 
-                    <?php for ($i = 0; $i < count($lesPassereaux); $i++) { ?>
-                        <form action="" method="post">
-                        <div data-filter="rapaces_nuit" class="item">
-                            <div class="select-img"><img src="img/<?= $lesPassereaux[$i]['imageO'] ?>" alt=""></div>
-                            <div class="nom"><?= $lesPassereaux[$i]['nom'] ?></div>
-                            <div class="espece"><?= $lesPassereaux[$i]['espece']; ?></div>
+                    <!-- Passereaux -->
+                    <?php foreach ($lesPassereaux as $oiseau): ?>
+                        <div data-filter="passereaux" class="item">
+                            <div class="select-img">
+                                <img src="img/<?= !empty($oiseau['imageO']) ? $oiseau['imageO'] : 'default_bird.jpg' ?>" alt="<?= htmlspecialchars($oiseau['nom']) ?>">
+                            </div>
+                            <div class="nom"><?= htmlspecialchars($oiseau['nom']) ?></div>
+                            <div class="espece"><?= htmlspecialchars($oiseau['espece']) ?></div>
                         </div>
-                        </form>
-                    <?php } ?>
-
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 </main>
 
-<script src="filter.js"></script>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Fonction pour initialiser Isotope
+    var grid = document.querySelector('.items-container');
+    var iso;
+    
+    if (typeof Isotope !== 'undefined') {
+        iso = new Isotope(grid, {
+            itemSelector: '.item',
+            layoutMode: 'fitRows'
+        });
+        
+        // Filtrage au clic sur les boutons
+        var filterButtons = document.querySelectorAll('.filter-select');
+        filterButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var filterValue = this.getAttribute('data-filter');
+                
+                // Retirer la classe active de tous les boutons
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove('active-filter');
+                });
+                
+                // Ajouter la classe active au bouton cliqué
+                this.classList.add('active-filter');
+                
+                // Filtrer les éléments
+                if (filterValue === '*') {
+                    iso.arrange({ filter: '*' });
+                } else {
+                    iso.arrange({ filter: '[data-filter="' + filterValue + '"]' });
+                }
+            });
+        });
+    }
+});
+</script>
