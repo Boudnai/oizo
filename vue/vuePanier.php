@@ -71,7 +71,6 @@
             <!-- Bouton pour passer à la caisse ou continuer les achats -->
             <div class="actions">
                 <a href="?action=boutique" class="btn">Continuer les achats</a>
-                <a href="?action=commander" class="btn primary">Passer commande</a>
             </div>
         <?php endif; ?>
     </section>
