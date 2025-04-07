@@ -24,7 +24,7 @@
         <?php if(isLoggedOn()){ ?>
             <div class="user-actions">
                 <a tabindex="5" href="./?action=panier" title="Voir votre panier">
-                    <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #ffffff;" aria-label="Votre panier"></i>
+                    <img class="fa-solid fa-cart-shopping fa-2xl" src="img/panier.png" aria-label="Votre panier">
                 </a>
                 <a tabindex="6" href="./?action=profil" title="Accéder à votre profil">
                     <button type="button">Profil</button>
