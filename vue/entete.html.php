@@ -13,19 +13,29 @@
 
 <header>
     <nav>
-        <a tabindex="1" href="./?action=accueil"><img class="logo_oizo" src="img/logo_oizo.png" alt="Logo"></a>
+        <a tabindex="1" href="./?action=accueil" title="Accueil">
+            <img class="logo_oizo" src="img/logo_oizo.png" alt="Logo Oizo">
+        </a>
         <ul>
-            <li><a tabindex="2" href="./?action=accueil">Accueil</a></li>
-            <li><a tabindex="3" href="./?action=oiseaux">Oiseaux</a></li>         
-            <li><a tabindex="5" href="./?action=boutique">Spectacles</a></li>
+            <li><a tabindex="2" href="./?action=accueil" <?= $action == 'accueil' || $action == 'defaut' ? 'class="active"' : '' ?>>Accueil</a></li>
+            <li><a tabindex="3" href="./?action=oiseaux" <?= $action == 'oiseaux' ? 'class="active"' : '' ?>>Oiseaux</a></li>         
+            <li><a tabindex="4" href="./?action=boutique" <?= $action == 'boutique' ? 'class="active"' : '' ?>>Spectacles</a></li>
         </ul>
         <?php if(isLoggedOn()){ ?>
-            <div>
-                <a tabindex="-1" href="./?action=panier"><i tabindex="6" aria-label="Votre panier" class="fa-solid fa-cart-shopping fa-2xl" style="color: #ffffff;"></i></a>
-                <a tabindex="-1" href="./?action=profil"><button tabindex="7" type="button">Profil</button></a>
+            <div class="user-actions">
+                <a tabindex="5" href="./?action=panier" title="Voir votre panier">
+                    <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #ffffff;" aria-label="Votre panier"></i>
+                </a>
+                <a tabindex="6" href="./?action=profil" title="Accéder à votre profil">
+                    <button type="button">Profil</button>
+                </a>
             </div>
         <?php } else { ?>
-                <a tabindex="-1" href="./?action=connexion"><button tabindex="6" type="button">Connexion</button></a>
+            <div class="auth-actions">
+                <a tabindex="5" href="./?action=connexion" title="Se connecter">
+                    <button type="button">Connexion</button>
+                </a>
+            </div>
         <?php } ?>
     </nav>
 </header>
