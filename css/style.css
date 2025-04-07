@@ -51,8 +51,9 @@
   }
   
   .logo_oizo {
-    height: 50px;
+    height: 70px; /* Taille augmentée (était 50px) */
     transition: var(--transition);
+    margin-right: 20px; /* Ajout d'une marge à droite pour décaler vers la droite */
   }
   
   .logo_oizo:hover {
@@ -95,6 +96,18 @@
   nav button:hover {
     background-color: #f0f0f0;
     transform: translateY(-2px);
+  }
+  
+  /* User actions et panier */
+  .user-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-actions img {
+    height: 30px; /* Taille raisonnable pour l'icône du panier */
+    width: auto;
+    margin-right: 15px;
   }
   
   /* Main content */
@@ -396,12 +409,17 @@
   
   /* Admin tables */
   .admin-section {
-    padding: 1.5rem;
-    margin: 1.5rem auto;
-    max-width: 1200px;
+    max-width: 1000px !important;
+    width: 80% !important;
+    margin: 1.5rem auto !important;
+    padding: 2rem;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    text-align: center;
+    float: none !important;
+    display: block !important;
+    box-sizing: border-box !important;
   }
   
   .admin-section h2 {
@@ -419,17 +437,19 @@
     color: var(--secondary-color);
     border-bottom: 2px solid #eee;
     padding-bottom: 0.5rem;
+    text-align: center;
   }
   
   .admin-table table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0 auto;
   }
   
   .admin-table th,
   .admin-table td {
     padding: 0.75rem;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #eee;
   }
   
@@ -440,6 +460,16 @@
   
   .admin-table tr:hover {
     background-color: #f8f9fa;
+  }
+  
+  /* Style pour les formulaires dans les tableaux admin */
+  .admin-table form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
   }
   
   /* Panier */
@@ -536,6 +566,15 @@
     .admin-table th,
     .admin-table td {
       padding: 0.5rem;
+    }
+    
+    .logo_oizo {
+      height: 50px;
+      margin-right: 0;
+    }
+    
+    .user-actions img {
+      height: 25px;
     }
   }
   

@@ -24,7 +24,7 @@
                         <div data-filter="exp" class="item">
                             
                             <div class="titre"><?= $lesSpectacles[$i]['titre'] ?></div>
-                            <div class="prix"><h4>€ <?= $lesSpectacles[$i]['prix']; ?></h4></div>
+                            <div class="prix"><h4><?= $lesSpectacles[$i]['prix']; ?> €</h4></div>
                             <input class="article-input" type="number" min="1" name="nb_places" value="1">
                             <input type="hidden" name="id_panier" value="<?= $idPanier['idPanier']; ?>">
                             <input type="hidden" name="id_spectacle" value="<?= $lesSpectacles[$i]['idSpectacle']; ?>">

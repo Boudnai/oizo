@@ -14,7 +14,7 @@
 <header>
     <nav>
         <a tabindex="1" href="./?action=accueil" title="Accueil">
-            <img class="logo_oizo" src="img/logo_oizo.png" alt="Logo Oizo">
+            <img class="logo_oizo" src="img/logo_oizoo.png" alt="Logo Oizo">
         </a>
         <ul>
             <li><a tabindex="2" href="./?action=accueil" <?= $action == 'accueil' || $action == 'defaut' ? 'class="active"' : '' ?>>Accueil</a></li>
